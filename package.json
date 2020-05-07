@@ -1,0 +1,27 @@
+{
+  "name": "otp-ci",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./run_tests"
+  },
+  "bin": {
+    "otpci": "index.js",
+    "otp-ci": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phenixcoder/otp-ci.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phenixcoder/otp-ci/issues"
+  },
+  "homepage": "https://github.com/phenixcoder/otp-ci#readme",
+  "dependencies": {
+    "cli": "^1.0.1",
+    "otp": "^0.1.3"
+  }
+}

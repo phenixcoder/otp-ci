@@ -1,0 +1,31 @@
+#!/bin/bash
+
+RED=$(echo -e '\e[31m');
+GREEN=$(echo -e '\e[32m');
+YELLOW=$(echo -e '\e[33m');
+RESET=$(echo -e '\e[0m');
+
+
+export SECRET=1234
+printf "\n\n$GREEN Implicit values$RESET\n"
+RESULT1=$(node index.js verify -s $SECRET -o $(node index.js generate -s $SECRET))
+RESULT2=$(node index.js verify --secret $SECRET -o $(node index.js generate --secret $SECRET))
+RESULT3=$(node index.js verify --secret=$SECRET -o $(node index.js generate --secret=$SECRET))
+RESULT4=$(OTP_SECRET=$SECRET node index.js verify -o $(OTP_SECRET=$SECRET node index.js generate))
+
+printf "\n$YELLOW   Verify Generated OTP when secret is passed with -s: $RESET$RESULT1"
+printf "\n$YELLOW   Verify Generated OTP when secret is passed with --secret: $RESET$RESULT2"
+printf "\n$YELLOW   Verify Generated OTP when secret is passed with ---secret= : $RESET$RESULT3"
+printf "\n$YELLOW   Verify Generated OTP when secret is passed with environment variable: $RESET$RESULT4"
+
+printf "\n\n$GREEN Explicit TOTP$RESET\n"
+
+RESULT1=$(node index.js verify -m TOTP -s $SECRET -o $(node index.js generate -m TOTP -s $SECRET))
+
+printf "\n$YELLOW   Verify Generated OTP when explicit method TOTP is passed with -m: $RESET$RESULT1"
+
+printf "\n\n$GREEN Explicit HTOP$RESET\n"
+
+RESULT1=$(node index.js verify -m HTOP -c 1 -s $SECRET -o $(node index.js generate -m HTOP -c 1 -s $SECRET))
+
+printf "\n$YELLOW   Verify Generated OTP when explicit method HTOP -c 1 is passed with -m: $RESET$RESULT1"
