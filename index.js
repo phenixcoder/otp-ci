@@ -19,7 +19,7 @@ if (params.method === 'HOTP' && params.counter === null) {
   console.log('ERROR: Counter required. HOTP Method selected.\n\n');
   cli.getUsage(1);
 }
-var otp = OTP({
+var otp = new OTP({
   secret: secret
 });
 
